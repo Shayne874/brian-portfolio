@@ -1,0 +1,20 @@
+name: AI outreach unit tests
+on:
+  push:
+    branches: [feature/ai-workflow-portfolio]
+  pull_request:
+    paths:
+      - 'ai-outreach/**'
+      - '.github/workflows/ai-outreach-tests.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run offline workflow tests
+        run: python -m unittest discover -s ai-outreach -v
+      - name: Run deterministic example
+        run: python ai-outreach/workflow.py ai-outreach/sample-prospect.json --output /tmp/draft-review.json
