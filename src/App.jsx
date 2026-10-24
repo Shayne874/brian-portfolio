@@ -45,14 +45,24 @@ const SERVICES = [
   },
 ];
 
+const AI_PROJECT = {
+  status: "prototype",
+  title: "AI Personalized Outreach Workflow",
+  desc: "Python prototype for structured prompt inputs, optional LLM-generated drafts, deterministic evaluation checks, and mandatory human review.",
+  outcome: "Demonstrates validation, JSON output handling, a testing suite, and an approval gate. Live API use requires configuration.",
+  stack: "Python · LLM API · JSON · unittest",
+  links: [{ label: "Source & tests", href: "https://github.com/Shayne874/brian-portfolio/tree/feature/ai-workflow-portfolio/ai-outreach", icon: Terminal }],
+};
+
 const PROJECTS = [
+  AI_PROJECT,
   {
     status: "delivered",
     title: "This portfolio",
     desc: "A React + Vite site themed around traceroute and circuit routing - built to show layout, typography, and responsive design in practice.",
     outcome: "Designed and shipped a distinctive personal brand system around network routing.",
     stack: "React \u00B7 Vite \u00B7 CSS",
-    links: [{ label: "Source", href: "https://github.com/shayne874", icon: Terminal }],
+    links: [{ label: "Source", href: "https://github.com/Shayne874/brian-portfolio", icon: Terminal }],
   },
   {
     status: "delivered",
@@ -225,7 +235,7 @@ export default function App() {
               <ScrambleText>Brian Shayne</ScrambleText>
             </h1>
             <p className="tagline">
-              Frontend developer and technical writer with a network engineer&rsquo;s instinct for clean, reliable delivery.
+              Software and network engineer with Python automation experience, now building tested AI workflow prototypes.
             </p>
             <p className="sub">
               I design and build landing pages, small business websites, and clear technical content &mdash;
@@ -387,7 +397,7 @@ export default function App() {
             {PROJECTS.map((project) => (
               <article className="project-card" key={project.title}>
                 <span className={`status ${project.status}`}>
-                  {project.status === "delivered" ? "Delivered" : "In transit"}
+                  {project.status === "delivered" ? "Delivered" : project.status === "prototype" ? "Prototype" : "In transit"}
                 </span>
                 <ScrambleText as="h3">{project.title}</ScrambleText>
                 <p>{project.desc}</p>
